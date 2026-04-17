@@ -1,21 +1,23 @@
-CC = g++
-CFLAGS  = -Wall -Wextra -std=c11
+CXX = g++
+CXXFLAGS = -Wall -Wextra -std=c++17
+
 LIBS = -lraylib -lm
 
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)          
-OBJS  = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o) 
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+
 TARGET = cpprouge
 
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(OBJS) -o $@ $(LIBS)
+	$(CXX) $(OBJS) -o $@ $(LIBS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I$(SRC_DIR) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -I$(SRC_DIR) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
@@ -25,7 +27,9 @@ clean:
 
 re: clean all
 
-.PHONY: all clean re
-
 run: $(TARGET)
 	./$(TARGET)
+
+.PHONY: all clean re run
+
+#win cd /c/Users/usuario/Downloads/cpprouge
