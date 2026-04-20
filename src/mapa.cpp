@@ -64,6 +64,8 @@ void Mapa::grabar_pasillos() {
 
     std::vector<Sala*> visitadas;
 
+    // prioriza la mas cercna sin visitar  y si no hay la mas cercana visitada
+
     for (Sala &a : salas) {
 
         Sala *mas_cercana = nullptr;
@@ -91,6 +93,9 @@ void Mapa::grabar_pasillos() {
         }
 
         conectar(a.centro(), mas_cercana->centro());
+
+        visitadas.push_back(&a);
+        visitadas.push_back(mas_cercana);
     }
 }
 
