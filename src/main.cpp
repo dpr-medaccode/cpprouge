@@ -1,6 +1,9 @@
 #include "raylib.h"
+#include <iostream>
 
 int main(void) {
+
+	/*std::cout << "hola";
 
     const int screenWidth = 800;
     const int screenHeight = 450;
@@ -22,7 +25,7 @@ int main(void) {
         EndDrawing();
     }
 
-    CloseWindow();
+    CloseWindow();*/
 
     return 0;
 }
