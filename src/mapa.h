@@ -11,13 +11,12 @@ enum class TipoCelda {
 class Mapa {
 
   public:
-  
     std::vector<std::vector<TipoCelda>> celdas;
     std::vector<Sala> salas;
-    size_t alto, ancho;
+    int alto, ancho;
 
-    static Mapa new_vacio(size_t alto, size_t ancho);
-    static Mapa nuevo(size_t alto, size_t ancho, int cantidad_salas);
+    static Mapa new_vacio(int alto, int ancho);
+    static Mapa nuevo(int alto, int ancho, int cantidad_salas);
 
     static std::vector<Sala> annadir_salas_aleatorias(const Mapa &mapa,
                                                       int cantidad);
@@ -25,7 +24,9 @@ class Mapa {
     friend std::ostream &operator<<(std::ostream &os, const Mapa &mapa);
 
   private:
-    Mapa(size_t alto, size_t ancho);
+
+    Mapa(int alto, int ancho);
     void grabar_salas();
-    void grabar_pasillos(int conexiones);
+    void grabar_pasillos();
+    void conectar(std::pair<int,int> a, std::pair<int,int> b);
 };

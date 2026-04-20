@@ -1,7 +1,10 @@
 #include "raylib.h"
 #include <iostream>
+#include "mapa.h"
 
 int main(void) {
+
+    srand(time(nullptr));
 
 	/*std::cout << "hola";
 
@@ -26,6 +29,10 @@ int main(void) {
     }
 
     CloseWindow();*/
+
+    Mapa m = Mapa::nuevo(80,80,40);
+
+    std::cout << m;
 
     return 0;
 }

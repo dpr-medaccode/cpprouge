@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17
+CXXFLAGS = -Wall -Wextra -Wpedantic -Wshadow -Wconversion -std=c++17
 
 LIBS = -lraylib -lm
 

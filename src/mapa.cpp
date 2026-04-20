@@ -2,12 +2,12 @@
 #include <algorithm>
 #include <iostream>
 
-Mapa::Mapa(size_t alto, size_t ancho) : alto(alto), ancho(ancho) {}
+Mapa::Mapa(int alto, int ancho) : alto(alto), ancho(ancho) {}
 
-Mapa Mapa::new_vacio(size_t alto, size_t ancho) {
+Mapa Mapa::new_vacio(int alto, int ancho) {
     Mapa mapa(alto, ancho);
 
-    for (size_t i = 0; i < alto; ++i) {
+    for (int i = 0; i < alto; ++i) {
         std::vector<TipoCelda> fila(ancho, TipoCelda::Muro);
         mapa.celdas.push_back(fila);
     }
@@ -15,10 +15,11 @@ Mapa Mapa::new_vacio(size_t alto, size_t ancho) {
     return mapa;
 }
 
-Mapa Mapa::nuevo(size_t alto, size_t ancho, int cantidad_salas) {
+Mapa Mapa::nuevo(int alto, int ancho, int cantidad_salas) {
     Mapa mapa = Mapa::new_vacio(alto, ancho);
     mapa.salas = Mapa::annadir_salas_aleatorias(mapa, cantidad_salas);
     mapa.grabar_salas();
+    mapa.grabar_pasillos();
     return mapa;
 }
 
@@ -53,14 +54,60 @@ std::vector<Sala> Mapa::annadir_salas_aleatorias(const Mapa &mapa,
 
 void Mapa::grabar_salas() {
     for (const Sala &sala : salas) {
-        for (size_t i = sala.y; i < sala.y + sala.alto; ++i)
-            for (size_t j = sala.x; j < sala.x + sala.ancho; ++j)
+        for (int i = sala.y; i < sala.y + sala.alto; ++i)
+            for (int j = sala.x; j < sala.x + sala.ancho; ++j)
                 celdas[i][j] = TipoCelda::Suelo;
     }
 }
 
-void Mapa::grabar_pasillos(int conexiones) {
-    // TODO
+void Mapa::grabar_pasillos() {
+
+    std::vector<Sala*> visitadas;
+
+    for (Sala &a : salas) {
+
+        Sala *mas_cercana = nullptr;
+        int mejor_dist = 999999;
+
+        for (Sala &b : salas) {
+
+            if (&a == &b) {
+                mejor_dist = 999999;
+                continue;
+            }
+
+            if (&a == mas_cercana || &b == mas_cercana) {
+                mejor_dist = 999999;
+                continue;
+            }
+
+            int d = a.distacia(&b);
+
+            if (d < mejor_dist) {
+                mejor_dist = d;
+                mas_cercana = &b;
+            }
+
+        }
+
+        conectar(a.centro(), mas_cercana->centro());
+    }
+}
+
+void Mapa::conectar(std::pair<int, int> a, std::pair<int, int> b) {
+
+    int x1 = a.first;
+    int y1 = a.second;
+    int x2 = b.first;
+    int y2 = b.second;
+
+    for (int x = std::min(x1, x2); x <= std::max(x1, x2); ++x) {
+        celdas[y1][x] = TipoCelda::Suelo;
+    }
+
+    for (int y = std::min(y1, y2); y <= std::max(y1, y2); ++y) {
+        celdas[y][x2] = TipoCelda::Suelo;
+    }
 }
 
 std::ostream &operator<<(std::ostream &os, const Mapa &mapa) {
