@@ -74,14 +74,12 @@ void Mapa::grabar_pasillos() {
         for (Sala &b : salas) {
 
             if (&a == &b) {
-                mejor_dist = 999999;
+                mejor_dist = 999999; // chapuza del siglo
                 continue;
             }
 
-            if (&a == mas_cercana || &b == mas_cercana) {
-                mejor_dist = 999999;
-                continue;
-            }
+            if (&a == mas_cercana || &b == mas_cercana) continue;
+            
 
             int d = a.distacia(&b);
 
