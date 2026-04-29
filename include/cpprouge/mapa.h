@@ -20,7 +20,6 @@ class Mapa {
 
     static std::vector<Sala> annadir_salas_aleatorias(const Mapa &mapa,
                                                       int cantidad);
-
     friend std::ostream &operator<<(std::ostream &os, const Mapa &mapa);
 
   private:

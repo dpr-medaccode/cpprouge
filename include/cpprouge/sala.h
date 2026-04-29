@@ -7,6 +7,7 @@ class Sala {
     int x, y, ancho, alto/*, cortes*/;
 
     Sala(int x, int y, int ancho, int alto);
+	
     static Sala new_aleatoria(int mapa_ancho, int mapa_alto);
 
     bool se_solapa(const Sala &otra) const;

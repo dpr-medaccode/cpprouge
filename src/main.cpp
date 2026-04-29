@@ -1,36 +1,39 @@
-#include "raylib.h"
-#include <iostream>
 #include "cpprouge/mapa.h"
+#include "raylib-cpp/raylib-cpp.hpp"
+
+#include <iostream>
 
 int main(void) {
 
     srand(time(nullptr));
 
-	/*std::cout << "hola";
+    /*
 
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    int screenWidth = 800;
+    int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight,
-               "raylib [core] example - basic window");
+    raylib::Window window(screenWidth, screenHeight,
+                          "raylib-cpp - basic window");
 
     SetTargetFPS(60);
 
-    while (!WindowShouldClose()) {
+    while (!window.ShouldClose()) {
 
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        window.ClearBackground(raylib::Color::RayWhite());
 
-        DrawText("Congrats! You created your first window!", 190, 200, 20,
-                 LIGHTGRAY);
+        raylib::DrawText("Congrats! You created your first window!", 190, 200,
+                         20, raylib::Color::LightGray());
 
         EndDrawing();
     }
 
-    CloseWindow();*/
+    */
 
-    Mapa m = Mapa::nuevo(80,80,40);
+    std::cout << RAYLIB_VERSION << "\n";
+
+    Mapa m = Mapa::nuevo(80, 80, 40);
 
     std::cout << m;
 

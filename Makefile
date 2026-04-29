@@ -1,5 +1,8 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -I./include
+CXXFLAGS = -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion \
+           -Wnull-dereference -Wdouble-promotion -Wformat=2 \
+           -std=c++17 -I./include
+		   
 LDFLAGS = -lraylib
 
 SRC_DIR = src
@@ -8,7 +11,7 @@ INCLUDE_DIR = include
 
 SOURCES = $(SRC_DIR)/main.cpp $(SRC_DIR)/mapa.cpp $(SRC_DIR)/sala.cpp
 OBJECTS = $(OBJ_DIR)/main.o $(OBJ_DIR)/mapa.o $(OBJ_DIR)/sala.o
-EXECUTABLE = cpprouge.exe
+EXECUTABLE = cpprouge
 
 all: $(EXECUTABLE)
 
