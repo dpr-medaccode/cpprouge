@@ -1,4 +1,4 @@
-#include "sala.h"
+#include "cpprouge/sala.h"
 #include <cstdlib>
 
 Sala::Sala(int x, int y, int ancho, int alto)
