@@ -7,13 +7,12 @@ int main(void) {
 
     srand(time(nullptr));
 
-    /*
-
     int screenWidth = 800;
     int screenHeight = 450;
 
-    raylib::Window window(screenWidth, screenHeight,
-                          "raylib-cpp - basic window");
+    raylib::Window window(screenWidth, screenHeight, "cpprouge");
+
+    raylib::Camera3D camara;
 
     SetTargetFPS(60);
 
@@ -28,8 +27,6 @@ int main(void) {
 
         EndDrawing();
     }
-
-    */
 
     std::cout << RAYLIB_VERSION << "\n";
 
