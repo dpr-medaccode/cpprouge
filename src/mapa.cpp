@@ -54,8 +54,8 @@ std::vector<Sala> Mapa::annadir_salas_aleatorias(const Mapa &mapa,
 
 void Mapa::grabar_salas() {
     for (const Sala &sala : salas) {
-        for (int i = sala.y; i < sala.y + sala.alto; ++i)
-            for (int j = sala.x; j < sala.x + sala.ancho; ++j)
+        for (int i = sala.lugar.y; i < sala.lugar.y + sala.alto; ++i)
+            for (int j = sala.lugar.x; j < sala.lugar.x + sala.ancho; ++j)
                 celdas[i][j] = TipoCelda::Suelo;
     }
 }
@@ -100,12 +100,12 @@ void Mapa::grabar_pasillos() {
 
 }
 
-void Mapa::conectar(std::pair<int, int> a, std::pair<int, int> b) {
+void Mapa::conectar(Lugar a, Lugar b) {
 
-    int x1 = a.first;
-    int y1 = a.second;
-    int x2 = b.first;
-    int y2 = b.second;
+    int x1 = a.x;
+    int y1 = a.y;
+    int x2 = b.x;
+    int y2 = b.y;
 
     for (int x = std::min(x1, x2); x <= std::max(x1, x2); ++x) {
         celdas[y1][x] = TipoCelda::Suelo;

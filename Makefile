@@ -9,8 +9,8 @@ SRC_DIR = src
 OBJ_DIR = obj
 INCLUDE_DIR = include
 
-SOURCES = $(SRC_DIR)/main.cpp $(SRC_DIR)/mapa.cpp $(SRC_DIR)/sala.cpp
-OBJECTS = $(OBJ_DIR)/main.o $(OBJ_DIR)/mapa.o $(OBJ_DIR)/sala.o
+SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
 EXECUTABLE = cpprouge
 
 all: $(EXECUTABLE)
@@ -28,4 +28,4 @@ clean:
 run: $(EXECUTABLE)
 	./$(EXECUTABLE)
 
-.PHONY: all clean
+.PHONY: all clean run

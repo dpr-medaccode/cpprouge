@@ -27,5 +27,5 @@ class Mapa {
     Mapa(int alto, int ancho);
     void grabar_salas();
     void grabar_pasillos();
-    void conectar(std::pair<int,int> a, std::pair<int,int> b);
+    void conectar(Lugar a, Lugar b);
 };
