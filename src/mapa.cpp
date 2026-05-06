@@ -81,7 +81,7 @@ void Mapa::grabar_pasillos() {
             if (&a == mas_cercana || &b == mas_cercana) continue;
             
 
-            int d = a.distacia(&b);
+            int d = a.lugar.distacia(&b.lugar);
 
             if (d < mejor_dist) {
                 mejor_dist = d;
